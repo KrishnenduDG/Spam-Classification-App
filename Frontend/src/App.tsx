@@ -48,7 +48,7 @@ export default function App() {
         }
       );
       const data = await response.json();
-      setResult(data.prediction); // Assuming the API response contains { "prediction": "spam" or "ham" }
+      setResult(data.result); // Assuming the API response contains { "prediction": "spam" or "ham" }
     } catch (error) {
       setResult("Error fetching result");
     }
@@ -68,7 +68,7 @@ export default function App() {
       </Button>
       {result && (
         <div className="mt-4 p-3 rounded text-lg bg-gray-700">
-          {result === "spam" ? "🚨 Spam Detected!" : "✅ Ham"}
+          {result === "Spam" ? "🚨 Spam Detected!" : "✅ Ham"}
         </div>
       )}
     </div>
