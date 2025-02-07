@@ -12,6 +12,17 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = getenv("SECRET_KEY")
 
+    app.post("/check-server")
+
+    def check_server():
+        return (
+            jsonify(
+                status=True,
+                message="Server is up and running",
+            ),
+            200,
+        )
+
     @app.post("/predict")
     def predict_using_ml():
         sentence = request.json.get("sentence")
