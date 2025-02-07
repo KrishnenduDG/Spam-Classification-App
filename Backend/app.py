@@ -2,6 +2,7 @@ from os import getcwd, path, getenv
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from sc import SpamClassifier
+from flask_cors import CORS
 
 from predict import predict_spam_or_ham
 
@@ -12,8 +13,9 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = getenv("SECRET_KEY")
 
-    app.post("/check-server")
+    CORS(app, cors_allowed_origins="*")
 
+    @app.get("/check-server")
     def check_server():
         return (
             jsonify(
